@@ -8,15 +8,26 @@
 
 [node name="Node" type="Node"]
 
-[node name="GameManager" type="Node2D" parent="."]
+[node name="GameManager" type="Node2D" parent="." node_paths=PackedStringArray("LevelMenu", "GameOverlay")]
 script = ExtResource("1_0xm2m")
 levels = Array[PackedScene]([ExtResource("1_ig7tw"), ExtResource("3_h2yge")])
+LevelMenu = NodePath("../CanvasLayer/LevelMenu")
+GameOverlay = NodePath("../CanvasLayer/GameOverlay")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="LevelMenu" type="MarginContainer" parent="CanvasLayer"]
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -235.0
+offset_top = -118.0
+offset_right = 235.0
+offset_bottom = 118.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
@@ -44,12 +55,56 @@ layout_mode = 2
 
 [node name="LevelBox2" parent="CanvasLayer/LevelMenu/VBoxContainer/LevelGrid" instance=ExtResource("5_w0lsm")]
 layout_mode = 2
+locked = true
 level_num = 2
 
 [node name="LevelBox3" parent="CanvasLayer/LevelMenu/VBoxContainer/LevelGrid" instance=ExtResource("5_w0lsm")]
 layout_mode = 2
+locked = true
 level_num = 3
 
 [node name="LevelBox4" parent="CanvasLayer/LevelMenu/VBoxContainer/LevelGrid" instance=ExtResource("5_w0lsm")]
 layout_mode = 2
+locked = true
 level_num = 4
+
+[node name="GameOverlay" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Return" type="PanelContainer" parent="CanvasLayer/GameOverlay"]
+custom_minimum_size = Vector2(128, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="Return" type="Label" parent="CanvasLayer/GameOverlay/Return"]
+layout_mode = 2
+text = "Return"
+label_settings = ExtResource("4_7i1ub")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Restart" type="PanelContainer" parent="CanvasLayer/GameOverlay"]
+custom_minimum_size = Vector2(128, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+
+[node name="Restart" type="Label" parent="CanvasLayer/GameOverlay/Restart"]
+layout_mode = 2
+text = "Restart"
+label_settings = ExtResource("4_7i1ub")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="level_selected" from="CanvasLayer/LevelMenu/VBoxContainer/LevelGrid/LevelBox" to="GameManager" method="_on_level_box_level_selected"]
+[connection signal="gui_input" from="CanvasLayer/GameOverlay/Return" to="GameManager" method="_on_return_gui_input"]
+[connection signal="gui_input" from="CanvasLayer/GameOverlay/Restart" to="GameManager" method="_on_restart_gui_input"]

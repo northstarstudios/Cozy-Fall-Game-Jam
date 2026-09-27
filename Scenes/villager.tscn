@@ -1,14 +1,14 @@
 [gd_scene load_steps=3 format=3 uid="uid://cj2c2f1ub6uyg"]
 
-[ext_resource type="Script" uid="uid://dl53q58r1x54e" path="res://Scripts/villager.gd" id="1_sbtgs"]
-[ext_resource type="Texture2D" uid="uid://dac8g7ttap3o3" path="res://Assets/icon.svg" id="2_kyemj"]
+[ext_resource type="Script" uid="uid://dl53q58r1x54e" path="res://Scripts/villager.gd" id="1_7u53x"]
+[ext_resource type="Texture2D" uid="uid://dac8g7ttap3o3" path="res://Assets/icon.svg" id="2_gn4cm"]
 
 [node name="Villager" type="Node2D"]
 z_index = 1
-script = ExtResource("1_sbtgs")
+script = ExtResource("1_7u53x")
 direction = Vector2i(-1, 0)
 StartPosition = Vector2i(1, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.25, 0.25)
-texture = ExtResource("2_kyemj")
+texture = ExtResource("2_gn4cm")
