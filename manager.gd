@@ -18,9 +18,17 @@ func drawRoot():
 func checkNextPos(nextPos: Vector2i) -> bool:
 	return tileMap.get_cell_atlas_coords(nextPos) == Vector2i(0,0) or tileMap.get_cell_atlas_coords(nextPos) == Vector2i(-1,-1);
 
+func check_straight(pos, dir) -> bool:	
+	if tileMap.get_cell_atlas_coords(pos + dir) == Vector2i(1,1):
+		return check_straight(pos + dir, dir);
+	elif tileMap.get_cell_atlas_coords(pos + dir) == Vector2i(0,1):
+		return true;
+	else:
+		return false;
+
 func check_solution():
 	for child in get_children():
-		if tileMap.get_cell_atlas_coords(child.StartPosition + child.direction) == Vector2i(1,1):
+		if check_straight(child.StartPosition, child.direction): #tileMap.get_cell_atlas_coords(child.StartPosition + child.direction) == Vector2i(1,1):
 			child.success();
 			print("succes manager")
 

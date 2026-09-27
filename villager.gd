@@ -21,3 +21,4 @@ func _ready() -> void:
 func success():
 	print("success villager: ", name);
 	
+	
