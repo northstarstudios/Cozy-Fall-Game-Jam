@@ -9,7 +9,7 @@ var headPos = Vector2i(0,0);
 
 var body = [];
 
-var order = [Vector2i(1, 0), Vector2i(1, 0), Vector2i(1, 1)]
+var order = [Vector2i(12, 1), Vector2i(12, 1), Vector2i(12, 2)]
 
 var GameOver = false;
 
@@ -19,15 +19,37 @@ func drawRoot():
 		tileMap.set_cell(body[i], 1, order[i % order.size()]);
 
 func checkNextPos(nextPos: Vector2i) -> bool:
-	return tileMap.get_cell_atlas_coords(nextPos) == Vector2i(0,0) or tileMap.get_cell_atlas_coords(nextPos) == Vector2i(-1,-1);
+	var atlasCoords = tileMap.get_cell_atlas_coords(nextPos);
+	if (0 <= atlasCoords.y && atlasCoords.y <= 3): 
+		if (0 <= atlasCoords.x && atlasCoords.x <= 1):
+			return true;
+	elif (3 < atlasCoords.y && atlasCoords.y <= 5):
+		if (0 <= atlasCoords.x && atlasCoords.x <= 2):
+			return true;
+	elif atlasCoords == Vector2i(-1,-1):
+		return true;
+	return false;
+		
+	#return tileMap.get_cell_atlas_coords(nextPos) == Vector2i(0,0) or tileMap.get_cell_atlas_coords(nextPos) == Vector2i(-1,-1);
 
 func check_straight(pos, dir) -> bool:	
+	var atlasCoords = tileMap.get_cell_atlas_coords(pos + dir);
+	if (2 <= atlasCoords.y && atlasCoords.y <=3):
+		if (12 <= atlasCoords.x && atlasCoords.x <=13):
+			return check_straight(pos + dir, dir);
+	elif atlasCoords == Vector2i(3,4):
+		return true;
+	else:
+		return false;
+	return false;
+	"""
 	if tileMap.get_cell_atlas_coords(pos + dir) == Vector2i(1,1):
 		return check_straight(pos + dir, dir);
 	elif tileMap.get_cell_atlas_coords(pos + dir) == Vector2i(0,1):
 		return true;
 	else:
 		return false;
+	"""
 
 func check_solution():
 	var correct = true;

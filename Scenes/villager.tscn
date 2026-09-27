@@ -1,14 +1,35 @@
-[gd_scene load_steps=3 format=3 uid="uid://cj2c2f1ub6uyg"]
+[gd_scene load_steps=8 format=3 uid="uid://cj2c2f1ub6uyg"]
 
 [ext_resource type="Script" uid="uid://dl53q58r1x54e" path="res://Scripts/villager.gd" id="1_7u53x"]
 [ext_resource type="Texture2D" uid="uid://dac8g7ttap3o3" path="res://Assets/icon.svg" id="2_gn4cm"]
+[ext_resource type="Texture2D" uid="uid://cbmroflrvelnq" path="res://Assets/TileMaps/tilemap5.png" id="2_kk55i"]
 
-[node name="Villager" type="Node2D"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_t7jwd"]
+atlas = ExtResource("2_kk55i")
+region = Rect2(204, 170, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_16dn2"]
+atlas = ExtResource("2_kk55i")
+region = Rect2(221, 170, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5f3jw"]
+atlas = ExtResource("2_kk55i")
+region = Rect2(204, 187, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_saydm"]
+atlas = ExtResource("2_kk55i")
+region = Rect2(221, 187, 16, 16)
+
+[node name="Villager" type="Node2D" node_paths=PackedStringArray("sprite")]
 z_index = 1
 script = ExtResource("1_7u53x")
 direction = Vector2i(-1, 0)
 StartPosition = Vector2i(1, 1)
+sprite = NodePath("Sprite2D")
+right = SubResource("AtlasTexture_t7jwd")
+down = SubResource("AtlasTexture_16dn2")
+left = SubResource("AtlasTexture_5f3jw")
+up = SubResource("AtlasTexture_saydm")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_gn4cm")
