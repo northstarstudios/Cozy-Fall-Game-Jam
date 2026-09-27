@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://daeq6js721r7l"]
 
 [ext_resource type="Script" uid="uid://lppflvvhq7je" path="res://Scripts/level_box.gd" id="1_h1ug7"]
-[ext_resource type="LabelSettings" uid="uid://baier0il82262" path="res://Assets/new_label_settings.tres" id="2_y0s1f"]
+[ext_resource type="LabelSettings" uid="uid://cjarjuxtq87mv" path="res://Assets/ButtonLabelSettings.tres" id="2_h1ug7"]
 [ext_resource type="Texture2D" uid="uid://b1rwboe7p37it" path="res://Assets/green-blue.png" id="3_o2c1v"]
 
 [node name="LevelBox" type="PanelContainer"]
@@ -14,7 +14,7 @@ locked = false
 [node name="Label" type="Label" parent="."]
 layout_mode = 2
 text = "1"
-label_settings = ExtResource("2_y0s1f")
+label_settings = ExtResource("2_h1ug7")
 horizontal_alignment = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="."]

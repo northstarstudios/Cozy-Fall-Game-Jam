@@ -1,0 +1,8 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://cjarjuxtq87mv"]
+
+[sub_resource type="SystemFont" id="SystemFont_2l17n"]
+font_names = PackedStringArray("Comic Sans MS")
+
+[resource]
+font = SubResource("SystemFont_2l17n")
+font_size = 32

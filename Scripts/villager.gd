@@ -16,7 +16,7 @@ func _ready() -> void:
 		rotation_degrees = 180;
 	elif direction == Vector2i(0,-1):
 		rotation_degrees = -90;
-	print(position);
+	#print(position);
 
 func success():
 	print("success villager: ", name);

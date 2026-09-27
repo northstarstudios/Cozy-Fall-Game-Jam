@@ -4,11 +4,14 @@ extends Node2D
 @export var villager : PackedScene;
 
 
+
 var headPos = Vector2i(0,0);
 
 var body = [];
 
 var order = [Vector2i(1, 0), Vector2i(1, 0), Vector2i(1, 1)]
+
+var GameOver = false;
 
 
 func drawRoot():
@@ -27,10 +30,21 @@ func check_straight(pos, dir) -> bool:
 		return false;
 
 func check_solution():
+	var correct = true;
 	for child in get_children():
 		if check_straight(child.StartPosition, child.direction): #tileMap.get_cell_atlas_coords(child.StartPosition + child.direction) == Vector2i(1,1):
 			child.success();
-			print("succes manager")
+			#print("succes manager")
+		else:
+			correct = false;
+			break;
+	if correct:
+		var GameOverlay = get_node("../../../CanvasLayer/GameOverlay");
+		GameOverlay.showWinScreen();
+		GameOver = true;
+		
+		
+			
 
 func _ready() -> void:
 	for cell in tileMap.get_used_cells():
@@ -68,6 +82,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if GameOver:
+		return;
 	if Input.is_action_just_pressed("Up"):
 		if checkNextPos(headPos + Vector2i(0,-1)):
 			headPos += Vector2i(0,-1);
@@ -91,6 +107,6 @@ func _process(delta: float) -> void:
 			#tileMap.set_cell(headPos, 1, Vector2i(1,0))
 	drawRoot();
 	if Input.is_action_just_pressed("check"):
-		print(headPos, " ", body);
+		#print(headPos, " ", body);
 		check_solution();
 	

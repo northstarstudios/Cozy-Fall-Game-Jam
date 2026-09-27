@@ -1,10 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://rqwqjgfvgrca"]
+[gd_scene load_steps=9 format=3 uid="uid://rqwqjgfvgrca"]
 
 [ext_resource type="Script" uid="uid://ox7hejivpx57" path="res://Scripts/game_manager.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://c8ahojdphopp2" path="res://Scenes/Levels/level_1.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://dfu3w7tkysc43" path="res://Scenes/Levels/level_2.tscn" id="3_h2yge"]
-[ext_resource type="LabelSettings" uid="uid://baier0il82262" path="res://Assets/new_label_settings.tres" id="4_7i1ub"]
+[ext_resource type="Script" uid="uid://b5uw2tn7ov8su" path="res://Scenes/Levels/level_menu.gd" id="4_w0lsm"]
+[ext_resource type="LabelSettings" uid="uid://bduxj67mb3tur" path="res://Assets/overlayLabelSettings.tres" id="5_tpkgp"]
 [ext_resource type="PackedScene" uid="uid://daeq6js721r7l" path="res://Scenes/UI/level_box.tscn" id="5_w0lsm"]
+[ext_resource type="Script" uid="uid://bvsps2qedg480" path="res://Scenes/Levels/game_overlay.gd" id="7_5sf7f"]
+[ext_resource type="LabelSettings" uid="uid://cjarjuxtq87mv" path="res://Assets/ButtonLabelSettings.tres" id="7_irfg1"]
 
 [node name="Node" type="Node"]
 
@@ -16,7 +19,7 @@ GameOverlay = NodePath("../CanvasLayer/GameOverlay")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="LevelMenu" type="MarginContainer" parent="CanvasLayer"]
+[node name="LevelMenu" type="MarginContainer" parent="CanvasLayer" node_paths=PackedStringArray("LevelGrid")]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -32,6 +35,8 @@ theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
+script = ExtResource("4_w0lsm")
+LevelGrid = NodePath("VBoxContainer/LevelGrid")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/LevelMenu"]
 layout_mode = 2
@@ -40,7 +45,7 @@ theme_override_constants/separation = 50
 [node name="Title" type="Label" parent="CanvasLayer/LevelMenu/VBoxContainer"]
 layout_mode = 2
 text = "Level Selector"
-label_settings = ExtResource("4_7i1ub")
+label_settings = ExtResource("5_tpkgp")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -68,7 +73,7 @@ layout_mode = 2
 locked = true
 level_num = 4
 
-[node name="GameOverlay" type="MarginContainer" parent="CanvasLayer"]
+[node name="GameOverlay" type="MarginContainer" parent="CanvasLayer" node_paths=PackedStringArray("WinScreen", "ReturnButton", "RestartButton")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -78,6 +83,38 @@ theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
+script = ExtResource("7_5sf7f")
+WinScreen = NodePath("WinScreen")
+ReturnButton = NodePath("Return")
+RestartButton = NodePath("Restart")
+
+[node name="WinScreen" type="PanelContainer" parent="CanvasLayer/GameOverlay"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/GameOverlay/WinScreen"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="WinScreen" type="Label" parent="CanvasLayer/GameOverlay/WinScreen/VBoxContainer"]
+layout_mode = 2
+text = "Level Completed"
+label_settings = ExtResource("5_tpkgp")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ReturnWin" type="PanelContainer" parent="CanvasLayer/GameOverlay/WinScreen/VBoxContainer"]
+custom_minimum_size = Vector2(128, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="ReturnWin" type="Label" parent="CanvasLayer/GameOverlay/WinScreen/VBoxContainer/ReturnWin"]
+layout_mode = 2
+text = "Return"
+label_settings = ExtResource("7_irfg1")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Return" type="PanelContainer" parent="CanvasLayer/GameOverlay"]
 custom_minimum_size = Vector2(128, 64)
@@ -88,7 +125,7 @@ size_flags_vertical = 0
 [node name="Return" type="Label" parent="CanvasLayer/GameOverlay/Return"]
 layout_mode = 2
 text = "Return"
-label_settings = ExtResource("4_7i1ub")
+label_settings = ExtResource("7_irfg1")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -101,10 +138,10 @@ size_flags_vertical = 8
 [node name="Restart" type="Label" parent="CanvasLayer/GameOverlay/Restart"]
 layout_mode = 2
 text = "Restart"
-label_settings = ExtResource("4_7i1ub")
+label_settings = ExtResource("7_irfg1")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[connection signal="level_selected" from="CanvasLayer/LevelMenu/VBoxContainer/LevelGrid/LevelBox" to="GameManager" method="_on_level_box_level_selected"]
+[connection signal="gui_input" from="CanvasLayer/GameOverlay/WinScreen/VBoxContainer/ReturnWin" to="GameManager" method="_on_finished_level"]
 [connection signal="gui_input" from="CanvasLayer/GameOverlay/Return" to="GameManager" method="_on_return_gui_input"]
 [connection signal="gui_input" from="CanvasLayer/GameOverlay/Restart" to="GameManager" method="_on_restart_gui_input"]

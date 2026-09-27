@@ -12,7 +12,7 @@ signal level_selected
 @onready var label = $Label
 
 func set_locked(value):
-	print(value)
+	#print(value)
 	locked = value
 	if not is_inside_tree():
 		await ready
@@ -20,7 +20,7 @@ func set_locked(value):
 	label.visible = not value
 
 func set_level(value):
-	print(value)
+	#print(value)
 	level_num = value
 	if not is_inside_tree():
 		await ready
@@ -31,5 +31,5 @@ func _on_gui_input(event):
 	if locked:
 		return
 	if event is InputEventMouseButton and event.pressed:
-		level_selected.emit(level_num)
 		print("Clicked level ", level_num)
+		level_selected.emit(level_num)
