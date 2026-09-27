@@ -6,7 +6,7 @@ extends Node2D
 
 var headPos = Vector2i(0,0);
 
-var body = [headPos];
+var body = [];
 
 var order = [Vector2i(1, 0), Vector2i(1, 0), Vector2i(1, 1)]
 
@@ -62,6 +62,9 @@ func _ready() -> void:
 			newVillager.manager = self;
 			newVillager.name = var_to_str(cell);
 			add_child(newVillager);
+		if tileMap.get_cell_tile_data(cell).get_custom_data("StartPos"):
+			headPos = cell;
+	body.push_back(headPos);
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
