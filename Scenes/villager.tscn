@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cj2c2f1ub6uyg"]
 
-[ext_resource type="Script" uid="uid://dl53q58r1x54e" path="res://villager.gd" id="1_sbtgs"]
-[ext_resource type="Texture2D" uid="uid://dac8g7ttap3o3" path="res://icon.svg" id="2_kyemj"]
+[ext_resource type="Script" uid="uid://dl53q58r1x54e" path="res://Scripts/villager.gd" id="1_sbtgs"]
+[ext_resource type="Texture2D" uid="uid://dac8g7ttap3o3" path="res://Assets/icon.svg" id="2_kyemj"]
 
 [node name="Villager" type="Node2D"]
 z_index = 1

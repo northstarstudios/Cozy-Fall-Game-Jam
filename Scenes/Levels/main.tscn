@@ -1,0 +1,55 @@
+[gd_scene load_steps=6 format=3 uid="uid://rqwqjgfvgrca"]
+
+[ext_resource type="Script" uid="uid://ox7hejivpx57" path="res://Scripts/game_manager.gd" id="1_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://c8ahojdphopp2" path="res://Scenes/Levels/level_1.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://dfu3w7tkysc43" path="res://Scenes/Levels/level_2.tscn" id="3_h2yge"]
+[ext_resource type="LabelSettings" uid="uid://baier0il82262" path="res://Assets/new_label_settings.tres" id="4_7i1ub"]
+[ext_resource type="PackedScene" uid="uid://daeq6js721r7l" path="res://Scenes/UI/level_box.tscn" id="5_w0lsm"]
+
+[node name="Node" type="Node"]
+
+[node name="GameManager" type="Node2D" parent="."]
+script = ExtResource("1_0xm2m")
+levels = Array[PackedScene]([ExtResource("1_ig7tw"), ExtResource("3_h2yge")])
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="LevelMenu" type="MarginContainer" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/LevelMenu"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Title" type="Label" parent="CanvasLayer/LevelMenu/VBoxContainer"]
+layout_mode = 2
+text = "Level Selector"
+label_settings = ExtResource("4_7i1ub")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LevelGrid" type="GridContainer" parent="CanvasLayer/LevelMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+columns = 4
+
+[node name="LevelBox" parent="CanvasLayer/LevelMenu/VBoxContainer/LevelGrid" instance=ExtResource("5_w0lsm")]
+layout_mode = 2
+
+[node name="LevelBox2" parent="CanvasLayer/LevelMenu/VBoxContainer/LevelGrid" instance=ExtResource("5_w0lsm")]
+layout_mode = 2
+level_num = 2
+
+[node name="LevelBox3" parent="CanvasLayer/LevelMenu/VBoxContainer/LevelGrid" instance=ExtResource("5_w0lsm")]
+layout_mode = 2
+level_num = 3
+
+[node name="LevelBox4" parent="CanvasLayer/LevelMenu/VBoxContainer/LevelGrid" instance=ExtResource("5_w0lsm")]
+layout_mode = 2
+level_num = 4

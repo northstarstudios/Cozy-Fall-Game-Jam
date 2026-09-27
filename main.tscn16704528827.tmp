@@ -1,0 +1,79 @@
+[gd_scene load_steps=5 format=3 uid="uid://rqwqjgfvgrca"]
+
+[ext_resource type="Script" uid="uid://ox7hejivpx57" path="res://game_manager.gd" id="1_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://c8ahojdphopp2" path="res://level_1.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://dfu3w7tkysc43" path="res://level_2.tscn" id="3_h2yge"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_0xm2m"]
+font_size = 32
+
+[node name="Node" type="Node"]
+
+[node name="GameManager" type="Node2D" parent="."]
+script = ExtResource("1_0xm2m")
+levels = Array[PackedScene]([ExtResource("1_ig7tw"), ExtResource("3_h2yge")])
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SplitContainer" type="SplitContainer" parent="CanvasLayer/Control/CenterContainer"]
+layout_mode = 2
+dragging_enabled = false
+vertical = true
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/CenterContainer/SplitContainer"]
+layout_mode = 2
+text = "Level Selector"
+label_settings = SubResource("LabelSettings_0xm2m")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/Control/CenterContainer/SplitContainer"]
+layout_mode = 2
+columns = 4
+
+[node name="lvl1" type="Button" parent="CanvasLayer/Control/CenterContainer/SplitContainer/GridContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+text = "1"
+
+[node name="lvl2" type="Button" parent="CanvasLayer/Control/CenterContainer/SplitContainer/GridContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+text = "2"
+
+[node name="lvl3" type="Button" parent="CanvasLayer/Control/CenterContainer/SplitContainer/GridContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+text = "3"
+
+[node name="lvl4" type="Button" parent="CanvasLayer/Control/CenterContainer/SplitContainer/GridContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+text = "4"
+
+[connection signal="pressed" from="CanvasLayer/Control/CenterContainer/SplitContainer/GridContainer/lvl1" to="GameManager" method="select_Level" binds= [NodePath(".")]]
+[connection signal="pressed" from="CanvasLayer/Control/CenterContainer/SplitContainer/GridContainer/lvl2" to="GameManager" method="select_Level" binds= [NodePath(".")]]
+[connection signal="pressed" from="CanvasLayer/Control/CenterContainer/SplitContainer/GridContainer/lvl3" to="GameManager" method="select_Level" binds= [NodePath(".")]]
+[connection signal="pressed" from="CanvasLayer/Control/CenterContainer/SplitContainer/GridContainer/lvl4" to="GameManager" method="select_Level" binds= [NodePath(".")]]
