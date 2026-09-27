@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://lppflvvhq7je" path="res://Scripts/level_box.gd" id="1_h1ug7"]
 [ext_resource type="LabelSettings" uid="uid://cjarjuxtq87mv" path="res://Assets/ButtonLabelSettings.tres" id="2_h1ug7"]
-[ext_resource type="Texture2D" uid="uid://b1rwboe7p37it" path="res://Assets/green-blue.png" id="3_o2c1v"]
+[ext_resource type="Texture2D" uid="uid://c324bfqa0tg00" path="res://Assets/lock.png" id="3_h1ug7"]
 
 [node name="LevelBox" type="PanelContainer"]
 custom_minimum_size = Vector2(100, 100)
@@ -23,7 +23,7 @@ layout_mode = 2
 [node name="TextureRect" type="TextureRect" parent="MarginContainer"]
 visible = false
 layout_mode = 2
-texture = ExtResource("3_o2c1v")
+texture = ExtResource("3_h1ug7")
 expand_mode = 1
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]

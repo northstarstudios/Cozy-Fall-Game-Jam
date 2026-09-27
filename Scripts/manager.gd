@@ -9,7 +9,7 @@ var headPos = Vector2i(0,0);
 
 var body = [];
 
-var order = [0,0,1]
+@export var order : Array[bool];
 
 var directions = [Vector2i(3,3)];
 var direction = Vector2i(0,0);

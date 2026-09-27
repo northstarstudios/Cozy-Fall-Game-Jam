@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://rqwqjgfvgrca"]
+[gd_scene load_steps=10 format=3 uid="uid://rqwqjgfvgrca"]
 
 [ext_resource type="Script" uid="uid://ox7hejivpx57" path="res://Scripts/game_manager.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://c8ahojdphopp2" path="res://Scenes/Levels/level_1.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://dfu3w7tkysc43" path="res://Scenes/Levels/level_2.tscn" id="3_h2yge"]
+[ext_resource type="PackedScene" uid="uid://dur0pnuh03ri3" path="res://Scenes/Levels/level_3.tscn" id="4_5sf7f"]
 [ext_resource type="Script" uid="uid://b5uw2tn7ov8su" path="res://Scenes/Levels/level_menu.gd" id="4_w0lsm"]
 [ext_resource type="LabelSettings" uid="uid://bduxj67mb3tur" path="res://Assets/overlayLabelSettings.tres" id="5_tpkgp"]
 [ext_resource type="PackedScene" uid="uid://daeq6js721r7l" path="res://Scenes/UI/level_box.tscn" id="5_w0lsm"]
@@ -13,7 +14,7 @@
 
 [node name="GameManager" type="Node2D" parent="." node_paths=PackedStringArray("LevelMenu", "GameOverlay")]
 script = ExtResource("1_0xm2m")
-levels = Array[PackedScene]([ExtResource("1_ig7tw"), ExtResource("3_h2yge")])
+levels = Array[PackedScene]([ExtResource("1_ig7tw"), ExtResource("3_h2yge"), ExtResource("4_5sf7f")])
 LevelMenu = NodePath("../CanvasLayer/LevelMenu")
 GameOverlay = NodePath("../CanvasLayer/GameOverlay")
 
@@ -53,7 +54,7 @@ vertical_alignment = 1
 layout_mode = 2
 theme_override_constants/h_separation = 10
 theme_override_constants/v_separation = 10
-columns = 4
+columns = 3
 
 [node name="LevelBox" parent="CanvasLayer/LevelMenu/VBoxContainer/LevelGrid" instance=ExtResource("5_w0lsm")]
 layout_mode = 2
@@ -67,11 +68,6 @@ level_num = 2
 layout_mode = 2
 locked = true
 level_num = 3
-
-[node name="LevelBox4" parent="CanvasLayer/LevelMenu/VBoxContainer/LevelGrid" instance=ExtResource("5_w0lsm")]
-layout_mode = 2
-locked = true
-level_num = 4
 
 [node name="GameOverlay" type="MarginContainer" parent="CanvasLayer" node_paths=PackedStringArray("WinScreen", "ReturnButton", "RestartButton")]
 visible = false
