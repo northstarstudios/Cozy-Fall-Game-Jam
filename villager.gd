@@ -3,6 +3,8 @@ extends Node2D
 @export var direction : Vector2i;
 @export var StartPosition : Vector2i;
 @export var manager : Node2D;
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	position = Vector2(StartPosition.x * 64 + 32, StartPosition.y * 64 + 32);
@@ -16,7 +18,6 @@ func _ready() -> void:
 		rotation_degrees = -90;
 	print(position);
 
-
-func evaluate():
-	pass
+func success():
+	print("success villager: ", name);
 	

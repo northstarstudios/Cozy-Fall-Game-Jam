@@ -3,6 +3,7 @@ extends Node2D
 @export var tileMap : TileMapLayer;
 @export var villager : PackedScene;
 
+
 var headPos = Vector2i(0,0);
 
 var body = [headPos];
@@ -17,27 +18,41 @@ func drawRoot():
 func checkNextPos(nextPos: Vector2i) -> bool:
 	return tileMap.get_cell_atlas_coords(nextPos) == Vector2i(0,0) or tileMap.get_cell_atlas_coords(nextPos) == Vector2i(-1,-1);
 
+func check_solution():
+	for child in get_children():
+		if tileMap.get_cell_atlas_coords(child.StartPosition + child.direction) == Vector2i(1,1):
+			child.success();
+			print("succes manager")
+
 func _ready() -> void:
 	for cell in tileMap.get_used_cells():
 		if tileMap.get_cell_tile_data(cell).get_custom_data("Direction") == Vector2i(1,0):
 			var newVillager = villager.instantiate();
 			newVillager.StartPosition = cell;
 			newVillager.direction = Vector2i(1,0);
+			newVillager.manager = self;
+			newVillager.name = var_to_str(cell);
 			add_child(newVillager);
 		elif tileMap.get_cell_tile_data(cell).get_custom_data("Direction") == Vector2i(0,1):
 			var newVillager = villager.instantiate();
 			newVillager.StartPosition = cell;
 			newVillager.direction = Vector2i(0,1);
+			newVillager.manager = self;
+			newVillager.name = var_to_str(cell);
 			add_child(newVillager);
 		elif tileMap.get_cell_tile_data(cell).get_custom_data("Direction") == Vector2i(-1,0):
 			var newVillager = villager.instantiate();
 			newVillager.StartPosition = cell;
 			newVillager.direction = Vector2i(-1,0);
+			newVillager.manager = self;
+			newVillager.name = var_to_str(cell);
 			add_child(newVillager);
 		elif tileMap.get_cell_tile_data(cell).get_custom_data("Direction") == Vector2i(0,-1):
 			var newVillager = villager.instantiate();
 			newVillager.StartPosition = cell;
 			newVillager.direction = Vector2i(0,-1);
+			newVillager.manager = self;
+			newVillager.name = var_to_str(cell);
 			add_child(newVillager);
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -65,5 +80,6 @@ func _process(delta: float) -> void:
 			#tileMap.set_cell(headPos, 1, Vector2i(1,0))
 	drawRoot();
 	if Input.is_action_just_pressed("check"):
-		print(headPos, " ", body)
+		print(headPos, " ", body);
+		check_solution();
 	
