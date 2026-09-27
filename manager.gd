@@ -1,6 +1,7 @@
 extends Node2D
 
 @export var tileMap : TileMapLayer;
+@export var villager : PackedScene;
 
 var headPos = Vector2i(0,0);
 
@@ -15,6 +16,29 @@ func drawRoot():
 
 func checkNextPos(nextPos: Vector2i) -> bool:
 	return tileMap.get_cell_atlas_coords(nextPos) == Vector2i(0,0) or tileMap.get_cell_atlas_coords(nextPos) == Vector2i(-1,-1);
+
+func _ready() -> void:
+	for cell in tileMap.get_used_cells():
+		if tileMap.get_cell_tile_data(cell).get_custom_data("Direction") == Vector2i(1,0):
+			var newVillager = villager.instantiate();
+			newVillager.StartPosition = cell;
+			newVillager.direction = Vector2i(1,0);
+			add_child(newVillager);
+		elif tileMap.get_cell_tile_data(cell).get_custom_data("Direction") == Vector2i(0,1):
+			var newVillager = villager.instantiate();
+			newVillager.StartPosition = cell;
+			newVillager.direction = Vector2i(0,1);
+			add_child(newVillager);
+		elif tileMap.get_cell_tile_data(cell).get_custom_data("Direction") == Vector2i(-1,0):
+			var newVillager = villager.instantiate();
+			newVillager.StartPosition = cell;
+			newVillager.direction = Vector2i(-1,0);
+			add_child(newVillager);
+		elif tileMap.get_cell_tile_data(cell).get_custom_data("Direction") == Vector2i(0,-1):
+			var newVillager = villager.instantiate();
+			newVillager.StartPosition = cell;
+			newVillager.direction = Vector2i(0,-1);
+			add_child(newVillager);
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
