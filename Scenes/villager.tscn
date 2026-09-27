@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dl53q58r1x54e" path="res://Scripts/villager.gd" id="1_7u53x"]
 [ext_resource type="Texture2D" uid="uid://dac8g7ttap3o3" path="res://Assets/icon.svg" id="2_gn4cm"]
-[ext_resource type="Texture2D" uid="uid://cbmroflrvelnq" path="res://Assets/TileMaps/tilemap5.png" id="2_kk55i"]
+[ext_resource type="Texture2D" uid="uid://d2eldob0dkyxu" path="res://Assets/TileMaps/tilemap5.png" id="2_kk55i"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t7jwd"]
 atlas = ExtResource("2_kk55i")

@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cj2c2f1ub6uyg" path="res://Scenes/villager.tscn" id="2_ihfcg"]
 [ext_resource type="Texture2D" uid="uid://bfcuemmk7qucq" path="res://Assets/TileMaps/tileMap4.png" id="3_rka8t"]
 [ext_resource type="Texture2D" uid="uid://b0i4xqdnb2v2i" path="res://Assets/TileMaps/tileMap4small.png" id="4_cyadu"]
-[ext_resource type="Texture2D" uid="uid://cbmroflrvelnq" path="res://Assets/TileMaps/tilemap5.png" id="5_xgxfi"]
+[ext_resource type="Texture2D" uid="uid://d2eldob0dkyxu" path="res://Assets/TileMaps/tilemap5.png" id="5_xgxfi"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5hph3"]
 texture = ExtResource("3_rka8t")
@@ -181,7 +181,6 @@ separation = Vector2i(1, 1)
 9:10/0 = 0
 10:10/0 = 0
 11:10/0 = 0
-12:10/0 = 0
 0:9/0 = 0
 13:9/0 = 0
 13:9/0/custom_data_0 = Vector2i(0, 1)
